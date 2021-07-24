@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Adjust the "=." strings based on n cols
+s=$(printf "%-$(tput cols)s" "=")
+LINE=$(echo "${s// /=}")
+
+
+# COLORS
+BGRED="\e[41m"
+END="\e[0m"
+BLINK="\e[5m"
+
+# Compilation of common one-liner revshells
+echo -e "\n=*= Remote Enumeration =*=\n"
+
+# LIVE HOSTS
+echo -e "\n${BGRED}${BLINK}LIVE HOSTS${END}"
+echo "$LINE"
+echo "sudo nmap -sn -n -PS -vv 1.1.1.1/24"
+echo "fping -a -q -g 1.1.1.1/24 -e -r 0"
+echo "fping -a 10.50.96.1"
+echo "sudo arp-scan -I tap0 10.10.10.0/24"
+echo "sudo netdiscover -i tap0 -S -L -f -r 10.10.10.0/24"
+
+# PORT SCAN
+echo -e "\n${BGRED}${BLINK}OPEN PORTS${END}"
+echo "$LINE"
+echo "sudo hping3 -S -p 80 1.1.1.1 -c 2"
+echo "sudo hping3 -F -U -P -p 8081 127.0.0.1 -c 2 # XMAS scan"
+echo "sudo hping3 -S --scan 1-1000 127.0.0.1 -c 2 # Range from 1-1000"
+echo "sudo hping3 -S --scan all 127.0.0.1 -c 2 # Scan all ports"
+echo "sudo hping3 -S --scan 80,445,139,22,8081 127.0.0.1 -c 1 # Scan secific ports"
+echo "sudo nmap -p80 10.10.10.10"
+
+# SERVICE SCAN
+echo -e "\n${BGRED}${BLINK}SERVICES${END}"
+echo "$LINE"
+echo "sudo nmap -sV -A -p- -vv -n -Pn 10.10.10.10"
+
+# Web directory scan
+echo ""
+echo -e "\n=*= Web Directory Enumeration =*=\n"
+echo -e "\n${BGRED}${BLINK}WEB DIRECTORY${END}"
+echo "$LINE"
+echo "ffuf -u http://10.10.10.10/FUZZ -w /usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt | tee http.txt"
+echo "gobuster dir -u https://10.10.10.10 -w /usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt"
+echo ""

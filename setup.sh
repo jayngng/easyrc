@@ -12,5 +12,6 @@ else
 fi
 
 /usr/bin/cp revshells ${HOMEDIR} && /usr/bin/chmod 755 "${HOMEDIR}/revshells"
+/usr/bin/cp rmenum ${HOMEDIR} && /usr/bin/chmod 755 "${HOMEDIR}/rmenum"
 echo -e "\n[+] You can execute: revshells commands to print all reverse shells."
 echo -e "[+] Done\n"
