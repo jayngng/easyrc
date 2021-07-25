@@ -35,7 +35,7 @@ echo "sudo nmap -p80 10.10.10.10"
 # SERVICE SCAN
 echo -e "\n${BGRED}${BLINK}SERVICES${END}"
 echo "$LINE"
-echo "sudo nmap -sV -A -p- -vv -n -Pn 10.10.10.10"
+echo "sudo nmap --open -sV -A -p- -vv -n -Pn 10.10.10.10"
 
 # Web directory scan
 echo ""
