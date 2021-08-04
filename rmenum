@@ -35,14 +35,14 @@ echo "sudo nmap -p80 10.10.10.10"
 # SERVICE SCAN
 echo -e "\n${BGRED}${BLINK}SERVICES${END}"
 echo "$LINE"
-echo "sudo nmap --open -sV -A -p- -vv -n -Pn 10.10.10.10"
+echo "sudo nmap --open -sV -A -p- -vv -n -Pn \$IP"
 
 # Web directory scan
 echo ""
 echo -e "\n=*= Web Directory Enumeration =*=\n"
 echo -e "\n${BGRED}${BLINK}WEB DIRECTORY${END}"
 echo "$LINE"
-echo "ffuf -u http://10.10.10.10/FUZZ -w /usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt | tee http.txt"
+echo "ffuf -u \$IP -w /usr/share/seclists/Discovery/Web-Content/common.txt | tee ffuf/http.txt"
 echo "gobuster dir -u https://10.10.10.10 -w /usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt"
 
 echo ""
